@@ -1,0 +1,16 @@
+.page {
+  background-color: #ddd;
+  color: #333;
+  min-width: 100vw;
+  min-height: 100vh;
+}
+.absoluteCenter {
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+.withNavBar{
+  min-height: calc(100vh - 4rem);
+}
