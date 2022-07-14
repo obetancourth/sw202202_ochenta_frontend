@@ -13,7 +13,9 @@ const Page = ({ children, useAbsoluteCenter = false, showNavBar = true, pageTitl
     <>
       {showNavBar && <NavBar title={pageTitle} />}
       <section className={className.join(' ')}>
-        {children}
+        <section className="content">
+          {children}
+        </section>
       </section>
     </>
   );

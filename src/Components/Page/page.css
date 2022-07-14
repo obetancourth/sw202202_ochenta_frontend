@@ -14,3 +14,7 @@
 .withNavBar{
   min-height: calc(100vh - 4rem);
 }
+.content {
+  background-color:#fff;
+  padding:1rem;
+}
