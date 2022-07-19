@@ -1,25 +1,38 @@
-import Page from "../../Components/Page";
+import LoginUx from "./LoginUx";
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import getSignIn from "../../Services/api/signinapi";
 
 const Login = () => {
+  const Navigator = useNavigate();
+  const [formValues, setFormValues] = useState({ email: '', password: '' });
+  const onChangeHandler = (event) => {
+    let { name, value } = event.target;
+    let newFormValues = {
+      ...formValues,
+      [name]: value
+    }
+    setFormValues(newFormValues);
+  }
+  const onSignInClick = async (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+      Navigator('/signin');
+  }
+  const onLoginClick = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    Navigator("/login");
+  }
   return (
-    <Page
-      showNavBar={true}
-      useAbsoluteCenter={true}
-      pageTitle="Login"
-    >
-      <form>
-        <fieldset>
-          <label htmlFor="">Email</label>
-          <input type="email" name="" id="" value="" />
-        </fieldset>
-        <fieldset>
-          <label htmlFor="">Contraseña</label>
-          <input type="password" name="" id="" value="" />
-        </fieldset>
-        <button>Iniciar Sesión</button>
-        <button>Crear Cuenta</button>
-      </form>
-    </Page>
+    <LoginUx
+      passwordValue={formValues.password}
+      emailValue={formValues.email}
+      onSignInClick={onSignInClick}
+      onLoginClick={onLoginClick}
+      onChangeHandler={onChangeHandler}
+    />
   );
 }
 export default Login;

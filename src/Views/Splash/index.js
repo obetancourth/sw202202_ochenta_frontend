@@ -1,4 +1,7 @@
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
 import Page from '../../Components/Page';
+import { app_loaded, app_start_loading } from './SplashActions';
 const h1SplashStyle = {
   width: "100%",
   backgroundColor: "#fff",
@@ -8,6 +11,14 @@ const h1SplashStyle = {
 }
 
 const Splash = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    app_start_loading(dispatch);
+    setTimeout(() => {
+      app_loaded(dispatch);
+    }, 3000);
+  }, [dispatch]);
+  
   return (
     <Page
       useAbsoluteCenter={true}
