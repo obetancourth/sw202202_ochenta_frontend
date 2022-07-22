@@ -30,7 +30,7 @@ const Login = () => {
     e.preventDefault();
     e.stopPropagation();
     await submitLogin(dispatch, formValues.email, formValues.password);
-    //Navigator('/')
+    Navigator('/home')
   }
   return (
     <LoginUx

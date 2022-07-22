@@ -1,9 +1,11 @@
-const BalanceCard = ()=>{
+import { toCurrency } from '../../Utilities/Currency';
+import './BalanceCard.css';
+const BalanceCard = ({ type, documents, amount }) => {
   return (
-    <>
-      <h2>Balance</h2>
-      <h1>$5,000.00</h1>
-    </>
+    <section className={['bcard', type.toLowerCase()].join(' ')}>
+      <h2>{type}</h2>
+      <h1>{toCurrency(amount)}</h1>
+    </section>
   );
 }
 export default BalanceCard;
