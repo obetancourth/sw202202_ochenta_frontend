@@ -1,10 +1,10 @@
 import { toCurrency } from '../../Utilities/Currency';
 import './BalanceCard.css';
-const BalanceCard = ({ type, documents, amount }) => {
+const BalanceCard = ({ type, amount, onClicked = () => { } }) => {
   return (
-    <section className={['bcard', type.toLowerCase()].join(' ')}>
-      <h2>{type}</h2>
-      <h1>{toCurrency(amount)}</h1>
+    <section className={['balanceCard', type.toLowerCase()].join(' ')}>
+      <h1>{type}</h1>
+      <h1>{toCurrency(amount)} <span className="balanceBtn" onClick={onClicked}>+</span></h1>
     </section>
   );
 }

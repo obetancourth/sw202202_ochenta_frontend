@@ -5,14 +5,13 @@ import Routes from './Routes';
 
 
 function App() {
-    const { appLoaded } = useSelector(state => state.app);
-    console.log(appLoaded);
-    return (
-      <>
-          {!appLoaded && <Splash/>}
-          { appLoaded && <Routes/>}
-      </>
-    );
+  const { appLoaded } = useSelector(state => state.app);
+  return (
+    <>
+      {!appLoaded && <Splash />}
+      {appLoaded && <Routes />}
+    </>
+  );
 }
 
 export default App;

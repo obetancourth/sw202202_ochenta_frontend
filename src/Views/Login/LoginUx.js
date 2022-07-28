@@ -1,9 +1,12 @@
 import Page from "../../Components/Page";
 import { Field } from '../../Components/InputField';
+import ActionField from '../../Components/ActionField';
+import ErrorField from "../../Components/ErrorField";
 
 const LoginInUx = ({
   emailValue = "",
   passwordValue = "",
+  error = "",
   onChangeHandler = () => { },
   onSignInClick = () => { },
   onLoginClick = () => { }
@@ -29,8 +32,11 @@ const LoginInUx = ({
           value={passwordValue}
           onChange={onChangeHandler}
         />
-        <button onClick={onLoginClick}>Iniciar Cuenta</button>
-        <button onClick={onSignInClick}>Crear Cuenta</button>
+        <ActionField>
+          <button onClick={onLoginClick}>Iniciar Cuenta</button>
+          <button onClick={onSignInClick}>Crear Cuenta</button>
+        </ActionField>
+        {error && <ErrorField>{error}</ErrorField>}
       </form>
     </Page>
   );

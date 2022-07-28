@@ -17,6 +17,7 @@ export const submitLogin = async (dispatch, email, password) => {
   } catch (ex) {
     console.log(ex);
     dispatch({ type: LOGIN_FAILED, payload: 'Credenciales no son Válidas!' });
+    throw Error("Credenciales no Válidas");
   }
 }
 

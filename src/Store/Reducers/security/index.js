@@ -1,4 +1,4 @@
-const defaultValue = {
+const defaultValue = JSON.parse(localStorage.getItem('auth')) || {
   user: null,
   isLoading: false,
   token: null,
@@ -15,11 +15,13 @@ const reducer = (state = defaultValue, action = { type: "NONE", payload: null })
       }
     case "LOGIN_SUCCESS":
       // TODO: add user data in endpoint and assign to user
-      return {
+      const newState = {
         ...state,
         isLoading: false,
         token: payload.token,
       }
+      localStorage.setItem('auth', JSON.stringify(newState));
+      return newState;
     case "LOGIN_FAILED":
       return {
         ...state,
@@ -30,6 +32,14 @@ const reducer = (state = defaultValue, action = { type: "NONE", payload: null })
     case "LOGIN_CLEAN_ERROR":
       return {
         ...state,
+        error: null
+      }
+    case "LOGIN_SIGNOUT":
+      localStorage.removeItem('auth');
+      return {
+        user: null,
+        isLoading: false,
+        token: null,
         error: null
       }
     default: return state;

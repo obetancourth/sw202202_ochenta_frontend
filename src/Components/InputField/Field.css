@@ -10,6 +10,10 @@
   background-color: transparent;
   border:none;
   border-bottom: 1px solid #ccc;
+  outline-style: none;
+}
+.input input:focus {
+  border-bottom: 1px solid #000;
 }
 .input label{
   font-size: 0.8rem;
