@@ -31,7 +31,6 @@ export const getCashFlowDocuments = async (dispatch, page, limit) => {
   try {
     dispatch({ type: CASHFLOW_LOAD, payload: null });
     const { data } = await axiosPrivate.get(`/cashflow/page/${page}/${limit}`);
-    console.log(data);
     dispatch({ type: CASHFLOW_SUCCESS, payload: data });
   } catch (ex) {
     console.log("summaryActions", ex);
