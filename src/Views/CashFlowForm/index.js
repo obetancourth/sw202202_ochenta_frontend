@@ -1,9 +1,15 @@
 import CashFlowFormUx from "./CashFlowFormUx";
 import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { postNewCashFlow } from "./CashFlowActions";
+import { getCashFlowDocuments } from "../Summary/SummaryActions";
 const CashFlowForm = ({ }) => {
   const { type } = useParams();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { documents: { page, pageLimit } } = useSelector(state => state.cashflow);
+
   const [formData, setFormData] = useState({
     description: "",
     date: new Date(),
@@ -29,10 +35,14 @@ const CashFlowForm = ({ }) => {
         break;
     }
   }
-  const onSubmitClick = (e) => {
+  const onSubmitClick = async (e) => {
     e.preventDefault();
     e.stopPropagation();
-    console.log("submit", formData);
+    const ok = await postNewCashFlow(dispatch, { ...formData, type: type.toUpperCase() });
+    if (ok) {
+      getCashFlowDocuments(dispatch, page, pageLimit);
+      navigate("/home");
+    }
   }
   const onCancelClick = (e) => {
     e.preventDefault();

@@ -17,7 +17,7 @@ const Summary = () => {
   },
     []);
   const onSummaryClick = (type) => {
-    navigate(`/add/${type}`);
+    navigate(`/add/${type.toLowerCase()}`);
   }
   const Pager = () => {
     if (documents.totalPages > 1) {
